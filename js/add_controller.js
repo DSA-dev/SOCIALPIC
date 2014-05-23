@@ -7,8 +7,11 @@
 		dropbox : function(holder){},
 
 		facebook : function(holder){
-			_loadFbAPI(document, 'script', 'facebook-jssdk');
-			_loadFbControls(holder);
+			var hld = holder || this.options.holder;
+
+			if(!hld) return;
+			this._loadFbAPI(document, 'script', 'facebook-jssdk');
+			this._loadFbControls(hld);
 		},
 
 		instagram : function(holder){},
@@ -31,10 +34,14 @@
 		},
 
 		_loadFbControls : function(holder){
-			
+			$(holder).append("<fb:login-button scope='public_profile,email' onlogin='checkLoginState();'></fb:login-button>");
 		},
 
 		_loadIgAPI : function(){},
 		_loadIgControls : function(){}
 	});
+
+	function checkLoginState(){
+		alert('FB ----- you are in :D');
+	}
 }(jQuery));
